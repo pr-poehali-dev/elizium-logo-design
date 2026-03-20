@@ -250,20 +250,7 @@ const Index = () => {
             />
           </div>
 
-          {/* Подпись */}
-          <p
-            className="text-center mt-3 tracking-[0.2em] uppercase"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(10px, 1.5vw, 13px)",
-              fontStyle: "italic",
-              color: "#7ab8b4",
-              letterSpacing: "0.25em",
-              opacity: 0.75,
-            }}
-          >
-            блаженные места для достойных душ
-          </p>
+
         </div>
       </div>
 
