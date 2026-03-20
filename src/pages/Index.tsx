@@ -52,55 +52,55 @@ const EliziumStar = () => {
 
       {/* === ЛУЧ ВВЕРХ === */}
       {/* левая грань (тёмная) */}
-      <polygon points="100,12 86,86 100,75" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="100,10 72,82 100,68" fill="url(#facetDark)" opacity="0.9" />
       {/* правая грань (светлая) */}
-      <polygon points="100,12 114,86 100,75" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="100,10 128,82 100,68" fill="url(#facetLight)" opacity="0.95" />
       {/* внутренняя грань слева */}
-      <polygon points="100,75 86,86 100,100" fill="url(#facetMid)" opacity="0.7" />
+      <polygon points="100,68 72,82 100,100" fill="url(#facetMid)" opacity="0.75" />
       {/* внутренняя грань справа */}
-      <polygon points="100,75 114,86 100,100" fill="url(#facetLight)" opacity="0.5" />
+      <polygon points="100,68 128,82 100,100" fill="url(#facetLight)" opacity="0.55" />
 
       {/* === ЛУЧ ВНИЗ === */}
-      <polygon points="100,188 86,114 100,125" fill="url(#facetLight)" opacity="0.95" />
-      <polygon points="100,188 114,114 100,125" fill="url(#facetDark)" opacity="0.9" />
-      <polygon points="100,125 86,114 100,100" fill="url(#facetLight)" opacity="0.5" />
-      <polygon points="100,125 114,114 100,100" fill="url(#facetMid)" opacity="0.7" />
+      <polygon points="100,190 72,118 100,132" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="100,190 128,118 100,132" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="100,132 72,118 100,100" fill="url(#facetLight)" opacity="0.55" />
+      <polygon points="100,132 128,118 100,100" fill="url(#facetMid)" opacity="0.75" />
 
       {/* === ЛУЧ ВЛЕВО === */}
-      <polygon points="12,100 86,86 75,100" fill="url(#facetLight)" opacity="0.95" />
-      <polygon points="12,100 86,114 75,100" fill="url(#facetDark)" opacity="0.9" />
-      <polygon points="75,100 86,86 100,100" fill="url(#facetMid)" opacity="0.7" />
-      <polygon points="75,100 86,114 100,100" fill="url(#facetLight)" opacity="0.5" />
+      <polygon points="10,100 82,72 68,100" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="10,100 82,128 68,100" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="68,100 82,72 100,100" fill="url(#facetMid)" opacity="0.75" />
+      <polygon points="68,100 82,128 100,100" fill="url(#facetLight)" opacity="0.55" />
 
       {/* === ЛУЧ ВПРАВО === */}
-      <polygon points="188,100 114,86 125,100" fill="url(#facetDark)" opacity="0.9" />
-      <polygon points="188,100 114,114 125,100" fill="url(#facetLight)" opacity="0.95" />
-      <polygon points="125,100 114,86 100,100" fill="url(#facetLight)" opacity="0.5" />
-      <polygon points="125,100 114,114 100,100" fill="url(#facetMid)" opacity="0.7" />
+      <polygon points="190,100 118,72 132,100" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="190,100 118,128 132,100" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="132,100 118,72 100,100" fill="url(#facetLight)" opacity="0.55" />
+      <polygon points="132,100 118,128 100,100" fill="url(#facetMid)" opacity="0.75" />
 
-      {/* === ЦЕНТРАЛЬНЫЙ РОМБ (пересечение лучей) === */}
-      <polygon points="100,75 114,100 100,125 86,100" fill="#c8f8f4" opacity="0.6" />
-      <polygon points="100,75 114,100 100,88" fill="white" opacity="0.5" />
-      <polygon points="86,100 100,75 100,88" fill="#a0e0dc" opacity="0.4" />
+      {/* === ЦЕНТРАЛЬНЫЙ РОМБ === */}
+      <polygon points="100,68 128,100 100,132 72,100" fill="#c8f8f4" opacity="0.55" />
+      <polygon points="100,68 128,100 100,84" fill="white" opacity="0.45" />
+      <polygon points="72,100 100,68 100,84" fill="#a0e0dc" opacity="0.35" />
 
       {/* Тонкие рёбра-линии для огранки */}
-      <line x1="100" y1="12" x2="86" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="100" y1="12" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="100" y1="188" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="100" y1="188" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="12" y1="100" x2="86" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="12" y1="100" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="188" y1="100" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="188" y1="100" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
-      <line x1="86" y1="86" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
-      <line x1="86" y1="114" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
-      <line x1="86" y1="86" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
-      <line x1="114" y1="86" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
+      <line x1="100" y1="10" x2="72" y2="82" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="100" y1="10" x2="128" y2="82" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="100" y1="190" x2="72" y2="118" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="100" y1="190" x2="128" y2="118" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="10" y1="100" x2="82" y2="72" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="10" y1="100" x2="82" y2="128" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="190" y1="100" x2="118" y2="72" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="190" y1="100" x2="118" y2="128" stroke="#c8f8f4" strokeWidth="0.5" opacity="0.6" />
+      <line x1="72" y1="82" x2="128" y2="82" stroke="#c8f8f4" strokeWidth="0.35" opacity="0.4" />
+      <line x1="72" y1="118" x2="128" y2="118" stroke="#c8f8f4" strokeWidth="0.35" opacity="0.4" />
+      <line x1="82" y1="72" x2="82" y2="128" stroke="#c8f8f4" strokeWidth="0.35" opacity="0.4" />
+      <line x1="118" y1="72" x2="118" y2="128" stroke="#c8f8f4" strokeWidth="0.35" opacity="0.4" />
 
       {/* Центральное свечение */}
-      <circle cx={cx} cy={cy} r="22" fill="url(#coreGlow)" filter="url(#centerBloom)" opacity="0.85" />
-      <circle cx={cx} cy={cy} r="8" fill="white" opacity="0.95" filter="url(#edgeGlow)" />
-      <circle cx={cx} cy={cy} r="4" fill="white" opacity="1" />
+      <circle cx={cx} cy={cy} r="28" fill="url(#coreGlow)" filter="url(#centerBloom)" opacity="0.85" />
+      <circle cx={cx} cy={cy} r="10" fill="white" opacity="0.95" filter="url(#edgeGlow)" />
+      <circle cx={cx} cy={cy} r="5" fill="white" opacity="1" />
     </svg>
   );
 };
