@@ -1,135 +1,106 @@
 import { useEffect, useState } from "react";
 
 const EliziumStar = () => {
+  const cx = 100, cy = 100;
   return (
-    <svg
-      viewBox="0 0 200 200"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <defs>
-        <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#b2f0ea" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#5dd8cc" stopOpacity="0" />
+        {/* Внешнее свечение фона */}
+        <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7df0e8" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#0d3330" stopOpacity="0" />
         </radialGradient>
-        <radialGradient id="starCore" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#e8fffe" />
-          <stop offset="40%" stopColor="#a8e8e4" />
-          <stop offset="100%" stopColor="#5bbfba" />
+        {/* Центральное свечение */}
+        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="30%" stopColor="#d0faf6" stopOpacity="0.9" />
+          <stop offset="70%" stopColor="#7de8e0" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#3bbfb8" stopOpacity="0" />
         </radialGradient>
-        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="60%" stopColor="#c8f0ec" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#7dd8d2" stopOpacity="0.3" />
-        </radialGradient>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
+        {/* Грани луча — светлая сторона */}
+        <linearGradient id="facetLight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#e8fffe" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#7dd8d2" stopOpacity="0.6" />
+        </linearGradient>
+        {/* Грани луча — тёмная сторона */}
+        <linearGradient id="facetDark" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3a9e99" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#1a5550" stopOpacity="0.9" />
+        </linearGradient>
+        {/* Грани — средний тон */}
+        <linearGradient id="facetMid" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#a8e8e4" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#5cc8c2" stopOpacity="0.7" />
+        </linearGradient>
+
+        <filter id="outerGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur" />
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
-        <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="8" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
+        <filter id="centerBloom" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="10" result="blur" />
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="edgeGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
 
-      {/* Внешнее свечение */}
-      <circle cx="100" cy="100" r="85" fill="url(#starGlow)" />
+      {/* Фоновое свечение */}
+      <circle cx={cx} cy={cy} r="90" fill="url(#bgGlow)" />
 
-      {/* Четырёхлучевая звезда — утолщённая форма */}
-      <path
-        d="M100 15
-           C108 50, 118 68, 100 100
-           C82 68, 92 50, 100 15Z"
-        fill="url(#starCore)"
-        filter="url(#glow)"
-        opacity="0.95"
-      />
-      <path
-        d="M100 185
-           C92 150, 82 132, 100 100
-           C118 132, 108 150, 100 185Z"
-        fill="url(#starCore)"
-        filter="url(#glow)"
-        opacity="0.95"
-      />
-      <path
-        d="M15 100
-           C50 92, 68 82, 100 100
-           C68 118, 50 108, 15 100Z"
-        fill="url(#starCore)"
-        filter="url(#glow)"
-        opacity="0.95"
-      />
-      <path
-        d="M185 100
-           C150 108, 132 118, 100 100
-           C132 82, 150 92, 185 100Z"
-        fill="url(#starCore)"
-        filter="url(#glow)"
-        opacity="0.95"
-      />
+      {/* === ЛУЧ ВВЕРХ === */}
+      {/* левая грань (тёмная) */}
+      <polygon points="100,12 86,86 100,75" fill="url(#facetDark)" opacity="0.9" />
+      {/* правая грань (светлая) */}
+      <polygon points="100,12 114,86 100,75" fill="url(#facetLight)" opacity="0.95" />
+      {/* внутренняя грань слева */}
+      <polygon points="100,75 86,86 100,100" fill="url(#facetMid)" opacity="0.7" />
+      {/* внутренняя грань справа */}
+      <polygon points="100,75 114,86 100,100" fill="url(#facetLight)" opacity="0.5" />
 
-      {/* Диагональные малые лучи */}
-      <path
-        d="M143 57
-           C128 74, 122 80, 100 100
-           C116 82, 122 76, 143 57Z"
-        fill="#a8e0dc"
-        opacity="0.5"
-      />
-      <path
-        d="M57 143
-           C72 126, 78 120, 100 100
-           C84 118, 78 124, 57 143Z"
-        fill="#a8e0dc"
-        opacity="0.5"
-      />
-      <path
-        d="M57 57
-           C74 72, 80 78, 100 100
-           C82 84, 76 78, 57 57Z"
-        fill="#a8e0dc"
-        opacity="0.5"
-      />
-      <path
-        d="M143 143
-           C126 128, 120 122, 100 100
-           C118 116, 124 122, 143 143Z"
-        fill="#a8e0dc"
-        opacity="0.5"
-      />
+      {/* === ЛУЧ ВНИЗ === */}
+      <polygon points="100,188 86,114 100,125" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="100,188 114,114 100,125" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="100,125 86,114 100,100" fill="url(#facetLight)" opacity="0.5" />
+      <polygon points="100,125 114,114 100,100" fill="url(#facetMid)" opacity="0.7" />
 
-      {/* Центральный кристалл */}
-      <circle cx="100" cy="100" r="10" fill="url(#centerGlow)" filter="url(#softGlow)" />
-      <circle cx="100" cy="100" r="5" fill="white" opacity="0.9" />
+      {/* === ЛУЧ ВЛЕВО === */}
+      <polygon points="12,100 86,86 75,100" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="12,100 86,114 75,100" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="75,100 86,86 100,100" fill="url(#facetMid)" opacity="0.7" />
+      <polygon points="75,100 86,114 100,100" fill="url(#facetLight)" opacity="0.5" />
 
-      {/* Декоративное кольцо */}
-      <circle
-        cx="100"
-        cy="100"
-        r="42"
-        fill="none"
-        stroke="#9dd8d4"
-        strokeWidth="0.4"
-        strokeDasharray="2 4"
-        opacity="0.5"
-      />
-      <circle
-        cx="100"
-        cy="100"
-        r="60"
-        fill="none"
-        stroke="#b8e8e4"
-        strokeWidth="0.3"
-        strokeDasharray="1 6"
-        opacity="0.3"
-      />
+      {/* === ЛУЧ ВПРАВО === */}
+      <polygon points="188,100 114,86 125,100" fill="url(#facetDark)" opacity="0.9" />
+      <polygon points="188,100 114,114 125,100" fill="url(#facetLight)" opacity="0.95" />
+      <polygon points="125,100 114,86 100,100" fill="url(#facetLight)" opacity="0.5" />
+      <polygon points="125,100 114,114 100,100" fill="url(#facetMid)" opacity="0.7" />
+
+      {/* === ЦЕНТРАЛЬНЫЙ РОМБ (пересечение лучей) === */}
+      <polygon points="100,75 114,100 100,125 86,100" fill="#c8f8f4" opacity="0.6" />
+      <polygon points="100,75 114,100 100,88" fill="white" opacity="0.5" />
+      <polygon points="86,100 100,75 100,88" fill="#a0e0dc" opacity="0.4" />
+
+      {/* Тонкие рёбра-линии для огранки */}
+      <line x1="100" y1="12" x2="86" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="100" y1="12" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="100" y1="188" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="100" y1="188" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="12" y1="100" x2="86" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="12" y1="100" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="188" y1="100" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="188" y1="100" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.4" opacity="0.6" />
+      <line x1="86" y1="86" x2="114" y2="86" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
+      <line x1="86" y1="114" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
+      <line x1="86" y1="86" x2="86" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
+      <line x1="114" y1="86" x2="114" y2="114" stroke="#c8f8f4" strokeWidth="0.3" opacity="0.4" />
+
+      {/* Центральное свечение */}
+      <circle cx={cx} cy={cy} r="22" fill="url(#coreGlow)" filter="url(#centerBloom)" opacity="0.85" />
+      <circle cx={cx} cy={cy} r="8" fill="white" opacity="0.95" filter="url(#edgeGlow)" />
+      <circle cx={cx} cy={cy} r="4" fill="white" opacity="1" />
     </svg>
   );
 };
